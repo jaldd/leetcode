@@ -1,15 +1,15 @@
-package array.q2.q26.optimal;
+package array.q3.q80.optimal;
 
 public class Solution {
     public int removeDuplicates(int[] nums) {
-
         int length = nums.length;
-        if (length <= 1) {
+        if (length <= 2) {
             return length;
         }
-        int low = 1, fast = 1;
+        int low = 2, fast = 2;
+
         while (fast < length) {
-            if (nums[fast] != nums[low - 1]) {
+            if (nums[low - 2] != nums[fast]) {
                 nums[low] = nums[fast];
                 low++;
             }
