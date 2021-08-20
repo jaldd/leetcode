@@ -13,7 +13,7 @@
 我们知道出现次数最多的元素大于 \lfloor \dfrac{n}{2} \rfloor⌊
 2
 n
-​
+
 ⌋ 次，所以可以用哈希表来快速统计每个元素出现的次数。
 
 算法
@@ -57,17 +57,17 @@ return counts;
 空间复杂度：O(n)O(n)。哈希表最多包含 n - \lfloor \dfrac{n}{2} \rfloorn−⌊
 2
 n
-​
+
 ⌋ 个键值对，所以占用的空间为 O(n)O(n)。这是因为任意一个长度为 nn 的数组最多只能包含 nn 个不同的值，但题中保证 nums 一定有一个众数，会占用（最少） \lfloor \dfrac{n}{2} \rfloor + 1⌊
 2
 n
-​
+
 ⌋+1 个数字。因此最多有 n - (\lfloor \dfrac{n}{2} \rfloor + 1)n−(⌊
 2
 n
-​
+
 ⌋+1) 个不同的其他数字，所以最多有 n - \lfloor \dfrac{n}{2} \rfloorn−⌊
 2
 n
-​
+
 ⌋ 个不同的元素。
