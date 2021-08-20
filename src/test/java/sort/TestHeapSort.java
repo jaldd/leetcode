@@ -7,9 +7,11 @@ public class TestHeapSort {
 
     @Test
     public void testSort() {
-        BubbleSort sort = new BubbleSort();
+
+        HeapSort sort = new HeapSort();
         int[] arr = new int[]{4, 2, 11, 6, -3};
         sort.sort(arr);
         Assert.assertArrayEquals(arr, new int[]{-3, 2, 4, 6, 11});
+
     }
 }
