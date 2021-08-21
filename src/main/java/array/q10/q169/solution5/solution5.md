@@ -1,7 +1,7 @@
 方法五：Boyer-Moore 投票算法
 思路
 
-如果我们把众数记为 +1+1，把其他数记为 -1−1，将它们全部加起来，显然和大于 0，从结果本身我们可以看出众数比其他数多。
+如果我们把众数记为 +1，把其他数记为 −1，将它们全部加起来，显然和大于 0，从结果本身我们可以看出众数比其他数多。
 
 算法
 
@@ -62,21 +62,6 @@ value:      1  2  1  2  1  0  -1  0  -1 -2 -1  0   1  2  3  4
 
 JavaPython3C++
 
-class Solution {
-public int majorityElement(int[] nums) {
-int count = 0;
-Integer candidate = null;
-
-        for (int num : nums) {
-            if (count == 0) {
-                candidate = num;
-            }
-            count += (num == candidate) ? 1 : -1;
-        }
-
-        return candidate;
-    }
-}
 复杂度分析
 
 时间复杂度：O(n)O(n)。Boyer-Moore 算法只对数组进行了一次遍历。

@@ -9,28 +9,31 @@ public class Solution {
 
         Map<Integer, Integer> map = getNumMap(nums);
         int resValue = 0, res = 0;
+//        Map.Entry<Integer, Integer> resEntry = null;
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             Integer value = entry.getValue();
 //            res=res?value
             if (value > resValue) {
                 resValue = value;
                 res = entry.getKey();
+//                resEntry=entry;
             }
         }
         return res;
+//        return resEntry.getKey();
 
     }
 
     private Map<Integer, Integer> getNumMap(int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < nums.length; i++) {
+        for (int num : nums) {
 
-            if (map.containsKey(nums[i])) {
-                map.put(map.get(nums[i]), map.get(nums[i]) + 1);
+            if (map.containsKey(num)) {
+                map.put(num, map.get(num) + 1);
                 continue;
             }
-            map.put(map.get(nums[i]), 1);
+            map.put(num, 1);
         }
 
         return map;
