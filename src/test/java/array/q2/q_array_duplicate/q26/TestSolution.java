@@ -1,6 +1,6 @@
-package array.q2.q26;
+package array.q2.q_array_duplicate.q26;
 
-import array.q2.q26.optimal.Solution;
+import array.q2.q_array_duplicate.q26.optimal.Solution;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,13 +21,13 @@ public class TestSolution {
             Assert.assertEquals(nums[i], res[i]);
         }
 
-        array.q2.q26.optimal.Solution solution1 = new array.q2.q26.optimal.Solution();
+        array.q2.q_array_duplicate.q26.optimal.Solution solution1 = new array.q2.q_array_duplicate.q26.optimal.Solution();
         int size1 = solution1.removeDuplicates(nums1);
         for (int i = 0; i < size1; i++) {
             Assert.assertEquals(nums1[i], res1[i]);
         }
 
-        array.q2.q26.optimal.Solution solution2 = new array.q2.q26.optimal.Solution();
+        array.q2.q_array_duplicate.q26.optimal.Solution solution2 = new array.q2.q_array_duplicate.q26.optimal.Solution();
         int size2 = solution2.removeDuplicates(nums2);
         for (int i = 0; i < size2; i++) {
             Assert.assertEquals(nums2[i], res2[i]);

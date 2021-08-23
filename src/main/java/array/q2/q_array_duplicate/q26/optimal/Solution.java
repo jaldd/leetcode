@@ -1,4 +1,4 @@
-package array.q2.q26.optimal;
+package array.q2.q_array_duplicate.q26.optimal;
 
 public class Solution {
     public int removeDuplicates(int[] nums) {
@@ -9,7 +9,7 @@ public class Solution {
         }
         int low = 1, fast = 1;
         while (fast < length) {
-            if (nums[fast] != nums[low - 1]) {
+            if (nums[low - 1] != nums[fast]) {
                 nums[low] = nums[fast];
                 low++;
             }
