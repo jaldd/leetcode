@@ -21,28 +21,6 @@ cnt	1	3	4	5
 
 C++JavaScriptJavaGolang
 
-class Solution {
-public int findDuplicate(int[] nums) {
-int n = nums.length;
-int l = 1, r = n - 1, ans = -1;
-while (l <= r) {
-int mid = (l + r) >> 1;
-int cnt = 0;
-for (int i = 0; i < n; ++i) {
-if (nums[i] <= mid) {
-cnt++;
-}
-}
-if (cnt <= mid) {
-l = mid + 1;
-} else {
-r = mid - 1;
-ans = mid;
-}
-}
-return ans;
-}
-}
 复杂度分析
 
 时间复杂度：O(n\log n)O(nlogn)，其中 nn 为 \textit{nums}nums 数组的长度。二分查找最多需要二分 O(\log n)O(logn) 次，每次判断的时候需要O(n)O(n) 遍历 \textit{nums}nums 数组求解小于等于 \textit{mid}mid 的数的个数，因此总时间复杂度为 O(n\log n)O(nlogn)。
