@@ -48,19 +48,6 @@ PythonJavaC#Golang
 
 def isHappy(self, n: int) -> bool:
 
-    def get_next(n):
-        total_sum = 0
-        while n > 0:
-            n, digit = divmod(n, 10)
-            total_sum += digit ** 2
-        return total_sum
-
-    seen = set()
-    while n != 1 and n not in seen:
-        seen.add(n)
-        n = get_next(n)
-
-    return n == 1
 复杂度分析
 
 确定这个问题的时间复杂度对于一个「简单」级别的问题来说是一个挑战。如果您对这些问题还不熟悉，可以尝试只计算 getNext(n) 函数的时间复杂度。
@@ -71,8 +58,3 @@ def isHappy(self, n: int) -> bool:
 我们在上面确定，一旦一个数字低于 243243，它就不可能回到 243243 以上。因此，我们就可以用 243243 以下最长循环的长度来代替 243243，不过，因为常数无论如何都无关紧要，所以我们不会担心它。
 对于高于 243243 的 nn，我们需要考虑循环中每个数高于 243243 的成本。通过数学运算，我们可以证明在最坏的情况下，这些成本将是 O(\log n) + O(\log \log n) + O(\log \log \log n)...O(logn)+O(loglogn)+O(logloglogn)...。幸运的是，O(\log n)O(logn) 是占主导地位的部分，而其他部分相比之下都很小（总的来说，它们的总和小于\log nlogn），所以我们可以忽略它们。
 空间复杂度：O(\log n)O(logn)。与时间复杂度密切相关的是衡量我们放入哈希集合中的数字以及它们有多大的指标。对于足够大的 nn，大部分空间将由 nn 本身占用。我们可以很容易地优化到 O(243 \cdot 3) = O(1)O(243⋅3)=O(1)，方法是只保存集合中小于 243243 的数字，因为对于较高的数字，无论如何都不可能返回到它们。
-
-作者：LeetCode-Solution
-链接：https://leetcode-cn.com/problems/happy-number/solution/kuai-le-shu-by-leetcode-solution/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
