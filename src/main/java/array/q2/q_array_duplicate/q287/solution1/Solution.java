@@ -4,13 +4,15 @@ public class Solution {
 
     public int findDuplicate(int[] nums) {
 
-        int n = nums.length;
-        int l = 1, r = n - 1, ans = -1;
-        while (l <= r) {
-            int mid = (l + r) / 2;
+        int l = 0, r = nums.length;
+
+        while (l < r) {
+
+            int mid = (l + r - 1) / 2;
             int cnt = 0;
-            for (int i = 0; i < n; ++i) {
-                if (nums[i] <= mid) {
+
+            for (int num : nums) {
+                if (num <= mid) {
                     cnt++;
                 }
             }
@@ -18,10 +20,35 @@ public class Solution {
             if (cnt <= mid) {
                 l = mid + 1;
             } else {
-                r = mid - 1;
-                ans = mid;
+                r = mid;
             }
+
         }
-        return ans;
+
+        return r;
+
+//        int length = nums.length;
+//        int l = 0, r = length - 1, res = 0;
+//
+//        while (l <= r) {
+//
+//            int mid = (l + r) / 2;
+//            int cnt = 0;
+//            for (int i = 0; i < length; ++i) {
+//                if (nums[i] <= mid) {
+//                    cnt++;
+//                }
+//            }
+//
+//            if (cnt <= mid) {
+//                l = mid + 1;
+//            } else {
+//                r = mid - 1;
+//                res = mid;
+//            }
+//
+//        }
+//
+//        return res;
     }
 }

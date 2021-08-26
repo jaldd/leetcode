@@ -7,9 +7,9 @@ public class TestBasicSort {
 
     @Test
     public void testSort() {
-        BubbleSort sort = new BubbleSort();
-        int[] arr = new int[]{4, 2, 11, 6, -3};
+        BasicSort sort = new BasicSort();
+        int[] arr = new int[]{4, 2, 11, 6, 1};
         sort.sort(arr);
-        Assert.assertArrayEquals(arr, new int[]{-3, 2, 4, 6, 11});
+        Assert.assertArrayEquals(arr, new int[]{1, 2, 4, 6, 11});
     }
 }
