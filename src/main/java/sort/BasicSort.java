@@ -3,8 +3,11 @@ package sort;
 import java.util.ArrayList;
 import java.util.List;
 
+//基数排序
 public class BasicSort {
+
     public void sort(int a[]) {
+
         int max = 0;
         for (int i = 0; i < a.length; i++) {
             if (a[i] > max) {
