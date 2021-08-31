@@ -1,20 +1,20 @@
 package array.q13.qjump.hard.q45.solution2;
 
-class Solution {
+public class Solution {
 
     public int jump(int[] nums) {
 
-        int length = nums.length;
-        int end = 0;
-        int maxPosition = 0; 
-        int steps = 0;
+        int length = nums.length, end = 0, position = 0, steps = 0;
+
         for (int i = 0; i < length - 1; i++) {
-            maxPosition = Math.max(maxPosition, i + nums[i]); 
+
+            position = Math.max(position, i + nums[i]);
             if (i == end) {
-                end = maxPosition;
+                end = position;
                 steps++;
             }
         }
+
         return steps;
     }
 }
