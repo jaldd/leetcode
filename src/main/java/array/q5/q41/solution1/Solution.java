@@ -1,6 +1,7 @@
 package array.q5.q41.solution1;
 
 public class Solution {
+
     public int firstMissingPositive(int[] nums) {
 
         int length = nums.length;
