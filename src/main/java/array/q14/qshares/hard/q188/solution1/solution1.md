@@ -2,40 +2,11 @@
 思路与算法
 
 与其余的股票问题类似，我们使用一系列变量存储「买入」的状态，再用一系列变量存储「卖出」的状态，通过动态规划的方法即可解决本题。
+
 ![img.png](img.png)
+
 ![img_1.png](img_1.png)
-代码
 
-C++JavaPython3GolangCJavaScript
-
-class Solution {
-public int maxProfit(int k, int[] prices) {
-if (prices.length == 0) {
-return 0;
-}
-
-        int n = prices.length;
-        k = Math.min(k, n / 2);
-        int[][] buy = new int[n][k + 1];
-        int[][] sell = new int[n][k + 1];
-
-        buy[0][0] = -prices[0];
-        sell[0][0] = 0;
-        for (int i = 1; i <= k; ++i) {
-            buy[0][i] = sell[0][i] = Integer.MIN_VALUE / 2;
-        }
-
-        for (int i = 1; i < n; ++i) {
-            buy[i][0] = Math.max(buy[i - 1][0], sell[i - 1][0] - prices[i]);
-            for (int j = 1; j <= k; ++j) {
-                buy[i][j] = Math.max(buy[i - 1][j], sell[i - 1][j] - prices[i]);
-                sell[i][j] = Math.max(sell[i - 1][j], buy[i - 1][j - 1] + prices[i]);   
-            }
-        }
-
-        return Arrays.stream(sell[n - 1]).max().getAsInt();
-    }
-}
 ![img_2.png](img_2.png)
 
 复杂度分析
