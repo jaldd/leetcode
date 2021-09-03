@@ -1,4 +1,6 @@
+
 方法一：动态规划
+
 ![img.png](img.png)
 class Solution {
 public int maxProfit(int[] prices, int fee) {
@@ -14,10 +16,7 @@ return dp[n - 1][0];
 }
 }
 
-作者：LeetCode-Solution
-链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/solution/mai-mai-gu-piao-de-zui-jia-shi-ji-han-sh-rzlz/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
 
 ![img_1.png](img_1.png)
 
@@ -56,6 +55,6 @@ return dp[0];
 
 复杂度分析
 
-时间复杂度：O(n)O(n)，其中 nn 为数组的长度。一共有 2n2n 个状态，每次状态转移的时间复杂度为 O(1)O(1)，因此时间复杂度为 O(2n)=O(n)O(2n)=O(n)。
+时间复杂度：O(n)，其中 n 为数组的长度。一共有 2n 个状态，每次状态转移的时间复杂度为 O(1)，因此时间复杂度为 O(2n)=O(n)。
 
-空间复杂度：O(n)O(n) 或 O(1)O(1)，取决于是否使用数组存储所有的状态。
+空间复杂度：O(n) 或 O(1)，取决于是否使用数组存储所有的状态。
