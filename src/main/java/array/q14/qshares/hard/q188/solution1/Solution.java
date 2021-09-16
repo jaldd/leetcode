@@ -2,15 +2,19 @@ package array.q14.qshares.hard.q188.solution1;
 
 import java.util.Arrays;
 
-class Solution {
+public class Solution {
 
     public int maxProfit(int k, int[] prices) {
+
         if (prices.length == 0) {
             return 0;
         }
 
         int n = prices.length;
+
+        //最多几次交易
         k = Math.min(k, n / 2);
+
         int[][] buy = new int[n][k + 1];
         int[][] sell = new int[n][k + 1];
 

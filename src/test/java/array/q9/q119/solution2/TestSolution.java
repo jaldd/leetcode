@@ -1,6 +1,6 @@
 package array.q9.q119.solution2;
 
-import array.q9.q119.solution1.Solution;
+import array.q8.qyhtriangle.q119.solution1.Solution;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -12,21 +12,19 @@ public class QuickSort extends AbstractSort {
 
         if (low < high) {
 
-            int pos = low, current = low;
+            int position = low;
+
             for (int i = low + 1; i <= high; i++) {
-                if (arr[i] < arr[pos]) {
-                    swap(arr, i, pos);
-                    pos++;
-                    current = i;
+                if (arr[i] < arr[position]) {
+                    position++;
+                    swap(arr, position, i);
                 }
             }
 
-            swap(arr, current, pos);
+            swap(arr, position, low);
 
-            quickSort(arr, low, pos - 1);
-            quickSort(arr, pos + 1, high);
+            quickSort(arr, low, position - 1);
+            quickSort(arr, position + 1, high);
         }
-
     }
-
 }

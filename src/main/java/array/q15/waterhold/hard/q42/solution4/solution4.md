@@ -19,29 +19,6 @@ If height[right]≥right_max, 更新 right_max
 Else 累加 right_max−height[right] 到 ans
 right = right - 1.
 
-public int trap(int[] height) {
-int left = 0, right = height.length - 1;
-int ans = 0;
-int left_max = 0, right_max = 0;
-while (left < right) {
-if (height[left] < height[right]) {
-if (height[left] >= left_max) {
-left_max = height[left];
-} else {
-ans += (left_max - height[left]);
-}
-++left;
-} else {
-if (height[right] >= right_max) {
-right_max = height[right];
-} else {
-ans += (right_max - height[right]);
-}
---right;
-}
-}
-return ans;
-}
 复杂性分析
 
 时间复杂度：O(n)。单次遍历的时间O(n)。
