@@ -13,11 +13,10 @@ public class QuickSort extends AbstractSort {
         if (low < high) {
 
             int position = low;
-
             for (int i = low + 1; i <= high; i++) {
                 if (arr[i] < arr[position]) {
                     position++;
-                    swap(arr, position, i);
+                    swap(arr, i, position);
                 }
             }
 
