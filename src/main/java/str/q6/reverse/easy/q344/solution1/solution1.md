@@ -11,21 +11,7 @@ right 指针左移一位，即 right = right - 1。
 当 left >= right，反转结束，返回字符数组即可。
 
 
-代码
-
-C++JavaScriptJavaGolangC
-
-class Solution {
-public void reverseString(char[] s) {
-int n = s.length;
-for (int left = 0, right = n - 1; left < right; ++left, --right) {
-char tmp = s[left];
-s[left] = s[right];
-s[right] = tmp;
-}
-}
-}
 复杂度分析
 
-时间复杂度：O(N)O(N)，其中 NN 为字符数组的长度。一共执行了 N/2N/2 次的交换。
-空间复杂度：O(1)O(1)。只使用了常数空间来存放若干变量。
+时间复杂度：O(N)，其中 N 为字符数组的长度。一共执行了 N/2 次的交换。
+空间复杂度：O(1)。只使用了常数空间来存放若干变量。
