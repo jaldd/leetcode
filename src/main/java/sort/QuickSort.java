@@ -4,26 +4,30 @@ public class QuickSort extends AbstractSort {
 
     public void sort(int[] arr) {
 
-        quickSort(arr, 0, arr.length - 1);
+        sort(arr, 0, arr.length - 1);
     }
 
-    //4, 2, 11, 6, -3
-    public void quickSort(int[] arr, int low, int high) {
+    public void sort(int[] arr, int left, int right) {
 
-        if (low < high) {
+        if (left < right) {
 
-            int position = low;
-            for (int i = low + 1; i <= high; i++) {
+            int position = left, current = left;
+            for (int i = left + 1; i <= right; i++) {
                 if (arr[i] < arr[position]) {
-                    position++;
+
                     swap(arr, i, position);
+                    position++;
+                    current = i;
                 }
             }
 
-            swap(arr, position, low);
+//            swap(arr, position, left);
+            swap(arr, position, current);
 
-            quickSort(arr, low, position - 1);
-            quickSort(arr, position + 1, high);
+            sort(arr, left, position - 1);
+            sort(arr, position + 1, right);
         }
     }
+
+
 }
