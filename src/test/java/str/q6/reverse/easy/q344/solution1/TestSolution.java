@@ -12,7 +12,7 @@ public class TestSolution {
         char[] hello = new char[]{'h', 'e', 'l', 'l', 'o'};
         solution.reverseString(hello);
         char[] hannah = new char[]{'H', 'a', 'n', 'n', 'a', 'h'};
-        solution.reverseString(hello);
+//        solution.reverseString(hello);
         Assert.assertArrayEquals(hello, new char[]{'o', 'l', 'l', 'e', 'h'});
         solution.reverseString(hannah);
         Assert.assertArrayEquals(hannah, new char[]{'h', 'a', 'n', 'n', 'a', 'H'});

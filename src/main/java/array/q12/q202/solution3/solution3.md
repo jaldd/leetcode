@@ -7,34 +7,7 @@
 
 因此，我们可以硬编码一个包含这些数字的散列集，如果我们达到其中一个数字，那么我们就知道在循环中。
 
-算法
-
-PythonJavaC#Golang
-
-class Solution {
-
-    private static Set<Integer> cycleMembers =
-        new HashSet<>(Arrays.asList(4, 16, 37, 58, 89, 145, 42, 20));
-
-    public int getNext(int n) {
-        int totalSum = 0;
-        while (n > 0) {
-            int d = n % 10;
-            n = n / 10;
-            totalSum += d * d;
-        }
-        return totalSum;
-    }
-
-
-    public boolean isHappy(int n) {
-        while (n != 1 && !cycleMembers.contains(n)) {
-            n = getNext(n);
-        }
-        return n == 1;
-    }
-}
 复杂度分析
 
-时间复杂度：O(\log n)O(logn)。和上面一样。
-空间复杂度：O(1)O(1)，我们没有保留我们所遇到的数字的历史记录。硬编码哈希集的大小是固定的。
+时间复杂度：O(logn)。和上面一样。
+空间复杂度：O(1)，我们没有保留我们所遇到的数字的历史记录。硬编码哈希集的大小是固定的。

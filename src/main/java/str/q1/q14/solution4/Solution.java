@@ -37,4 +37,24 @@ public class Solution {
         }
         return true;
     }
+
+
+    public String longestCommonPrefix(String str1, String str2) {
+        int left = 0;
+        int right = Math.min(str1.length(), str2.length());
+        int mid = 0;
+        while (left <= right) {
+            mid = left + (right - left) / 2;
+            if (str1.substring(0, mid).equals(str2.substring(0, mid))) {
+                if (mid == right || !str1.substring(0, mid + 1).equals(str2.substring(0, mid + 1))) {
+                    return str1.substring(0, mid);
+                }
+
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return str1.substring(0, mid);
+    }
 }
