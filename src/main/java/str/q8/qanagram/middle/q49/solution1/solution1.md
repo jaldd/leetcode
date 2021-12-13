@@ -9,22 +9,6 @@
 方法一：排序
 由于互为字母异位词的两个字符串包含的字母相同，因此对两个字符串分别进行排序之后得到的字符串一定是相同的，故可以将排序之后的字符串作为哈希表的键。
 
-JavaJavaScriptGolangC++Python3
-
-class Solution {
-public List<List<String>> groupAnagrams(String[] strs) {
-Map<String, List<String>> map = new HashMap<String, List<String>>();
-for (String str : strs) {
-char[] array = str.toCharArray();
-Arrays.sort(array);
-String key = new String(array);
-List<String> list = map.getOrDefault(key, new ArrayList<String>());
-list.add(str);
-map.put(key, list);
-}
-return new ArrayList<List<String>>(map.values());
-}
-}
 复杂度分析
 
 时间复杂度：O(nklogk)，其中 n 是 strs 中的字符串的数量，k 是 strs 中的字符串的的最大长度。需要遍历 n 个字符串，对于每个字符串，需要 O(klogk) 的时间进行排序以及 O(1) 的时间更新哈希表，因此总时间复杂度是 O(nklogk)。
