@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  定义一个辅助方法 isShifted(String s, String t) 表示字符串 s 是否可以通过移位变为 t。
+ * 定义一个辅助方法 isShifted(String s, String t) 表示字符串 s 是否可以通过移位变为 t。
  * <p>
  * 1、如果 s 和 t 长度不一致，肯定无法通过移位进行转换，返回 false；
  * <p>
@@ -27,29 +27,26 @@ import java.util.List;
 
 public class Solution {
 
-    public List<List<String>> groupStrings(String[] strings) {
-        List<List<String>> ans = new ArrayList<>();
-        boolean[] isAdded = new boolean[strings.length];
-        for (int i = 0; i < strings.length; i++) {
+    public List<List<String>> groupStrings(List<String> strings) {
+
+        List<List<String>> res = new ArrayList<>();
+        boolean[] isAdded = new boolean[strings.size()];
+        for (int i = 0; i < strings.size(); i++) {
             List<String> list = new ArrayList<>();
             if (isAdded[i]) {
-                /// 如果该字符串已经添加，则跳过
                 continue;
-            } else {
-                // 该字符串没被添加，则加入到 list
-                list.add(strings[i]);
             }
-            // 找到 strings[i] 的所有移位，并添加到 list 中
-            for (int j = i + 1; j < strings.length; j++) {
-                // 第 j 个字符串没有添加过，且 strings[i] 可以移位变为 strings[j]
-                if (!isAdded[j] && isShifted(strings[i], strings[j])) {
-                    list.add(strings[j]);
+            list.add(strings.get(i));
+            isAdded[i] = true;
+            for (int j = i + 1; j < strings.size(); j++) {
+                if (!isAdded[j] && isShifted(strings.get(i), strings.get(j))) {
+                    list.add(strings.get(j));
                     isAdded[j] = true;
                 }
             }
-            ans.add(list);
+            res.add(list);
         }
-        return ans;
+        return res;
     }
 
     /**
@@ -60,28 +57,19 @@ public class Solution {
      * @return
      */
     private boolean isShifted(String s, String t) {
-        if (s.length() != t.length()) return false; // 长度不相同，肯定不能移位 s 变为 t
-        if (s.length() == 1) return true;   // 长度相同，且长度为 1，可以移位 s 变为 t
-        int gap = 0;    // 字符串相邻字符的间隔，如：ab 的间隔为
-        int differ = t.charAt(0) - s.charAt(0);
-        if (differ < 0) {
-            // 比如 t[0] == 'b'， s[0] == 'a'，则 'b' - 'a' = -1
-            // 26 + (-1) = 25，可以看成 'b' 移位了 25 次变为 'a'
-            gap = 26 + differ;
-        } else {
-            gap = differ;
+
+        if (s.length() != t.length()) {
+            return false;
         }
-        for (int i = 0; i < s.length(); i++) {
-            int curgap = 0; // 当前间隔
-            int curDiffer = t.charAt(i) - s.charAt(i);
-            if (curDiffer < 0) {
-                curgap = 26 + curDiffer;
-            } else {
-                curgap = curDiffer;
-            }
-            if (curgap != gap) {
-                // s 和 t 每一个位置的字符间隔应该一致才能通过移位使得 s 变为 t
-                // 例如：ab 就无法移位转为 cf，因为 ab 间隔为 1，cf间隔为 3，a-c移位 2 次，b-f移位 4 次
+        if (s.length() == 1) {
+            return true;
+        }
+        int differ = s.charAt(0) - t.charAt(0);
+        int tmp = differ < 0 ? 26 + differ : differ;
+        for (int i = 1; i < s.length(); i++) {
+            int curDiffer = s.charAt(i) - t.charAt(i);
+            int curTmp = curDiffer < 0 ? 26 + curDiffer : curDiffer;
+            if (tmp != curTmp) {
                 return false;
             }
         }
