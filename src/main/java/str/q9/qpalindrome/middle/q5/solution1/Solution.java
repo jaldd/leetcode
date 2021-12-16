@@ -3,7 +3,6 @@ package str.q9.qpalindrome.middle.q5.solution1;
 public class Solution {
 
     public String longestPalindrome(String s) {
-
         int len = s.length();
         if (len < 2) {
             return s;
