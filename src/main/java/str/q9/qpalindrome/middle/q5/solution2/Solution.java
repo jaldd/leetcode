@@ -1,7 +1,9 @@
 package str.q9.qpalindrome.middle.q5.solution2;
 
-class Solution {
+public class Solution {
+
     public String longestPalindrome(String s) {
+
         if (s == null || s.length() < 1) {
             return "";
         }
