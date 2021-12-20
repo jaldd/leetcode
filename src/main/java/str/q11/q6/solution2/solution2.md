@@ -13,27 +13,6 @@
 行 numRows−1 中的字符位于索引 k(2⋅numRows−2)+numRows−1 处;
 内部的 行 i 中的字符位于索引 k(2⋅numRows−2)+i 以及 (k+1)(2⋅numRows−2)−i 处;
 
-C++Java
-
-class Solution {
-public String convert(String s, int numRows) {
-
-        if (numRows == 1) return s;
-
-        StringBuilder ret = new StringBuilder();
-        int n = s.length();
-        int cycleLen = 2 * numRows - 2;
-
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j + i < n; j += cycleLen) {
-                ret.append(s.charAt(j + i));
-                if (i != 0 && i != numRows - 1 && j + cycleLen - i < n)
-                    ret.append(s.charAt(j + cycleLen - i));
-            }
-        }
-        return ret.toString();
-    }
-}
 复杂度分析
 
 时间复杂度：O(n)，其中 n==len(s)。每个索引被访问一次。
