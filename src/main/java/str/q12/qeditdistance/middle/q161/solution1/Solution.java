@@ -1,5 +1,7 @@
 package str.q12.qeditdistance.middle.q161.solution1;
 
+import java.util.Date;
+
 public class Solution {
 
     public boolean isOneEditDistance(String s, String t) {
@@ -29,5 +31,9 @@ public class Solution {
             }
             return cnt == 1;
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Date().getTime());
     }
 }
