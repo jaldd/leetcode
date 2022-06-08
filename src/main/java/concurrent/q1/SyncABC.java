@@ -1,87 +1,68 @@
 package concurrent.q1;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class SyncABC {
 
-    private Object lock = new Object();
-    private int count = 0;
+    private static int count=0;
+    private static Object lock = new Object();
 
 
-    Thread a = new Thread(() -> {
-        pintA();
-    });
-    Thread b = new Thread(() -> {
-        printB();
-    });
-    Thread c = new Thread(() -> {
-        printC();
-    });
+    static class ThreadA extends Thread {
+        @Override
+        public void run() {
+            for(int i=0;i<10;i++){
+                System.out.println("count:"+count);
+                while(count%3!=0){
 
-    public void pintA() {
-
-        while (true) {
-            synchronized (lock) {
-                while (count % 3 != 0) {
-                    try {
-                        lock.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    continue;
                 }
-                System.out.println("A");
-                count++;
-                lock.notifyAll();
+                synchronized (lock){
+                    System.out.println("A");
+                    count++;
+                }
             }
         }
     }
 
-    public void printB() {
-        while (true) {
-            synchronized (lock) {
-                while (count % 3 != 1) {
-                    try {
-                        lock.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    continue;
+    static class ThreadB extends Thread {
+        @Override
+        public void run() {
+            for(int i=0;i<10;i++){
+                System.out.println("count1:"+count);
+
+                while(count%3!=1){
+
                 }
-                System.out.println("B");
-                count++;
-                lock.notifyAll();
+                synchronized (lock){
+                    System.out.println("B");
+                    count++;
+                }
             }
         }
     }
 
-    public void printC() {
-        while (true) {
-            synchronized (lock) {
-                while (count % 3 != 2) {
+    static class ThreadC extends Thread {
+        @Override
+        public void run() {
+            for(int i=0;i<10;i++){
+                System.out.println("count2:"+count);
 
-                    try {
-                        lock.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    continue;
+                while(count%3!=2){
+
                 }
-                System.out.println("C");
-                count++;
-                lock.notifyAll();
+                synchronized (lock){
+                    System.out.println("C");
+                    count++;
+                }
             }
         }
     }
 
-    public static void main(String[] args) {
-        SyncABC syncABC = new SyncABC();
-        syncABC.run();
-    }
-
-    private void run() {
-        a.start();
-        b.start();
-        c.start();
+    public static void main(String[] args) throws InterruptedException {
+        new ThreadA().start();
+        new ThreadB().start();
+        new ThreadC().start();
     }
 }
