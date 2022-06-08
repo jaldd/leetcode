@@ -3,7 +3,6 @@ package tree.q1.qtraversal.easy.q145;
 import org.junit.Assert;
 import org.junit.Test;
 import tree.q1.qtraversal.TreeNode;
-import tree.q1.qtraversal.middle.q102.solution1.Solution;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,20 +14,13 @@ public class TestSolution {
     public void testStr() {
 
         Solution solution = new Solution();
-        TreeNode root = new TreeNode(3);
-        TreeNode l1 = new TreeNode(9);
-        TreeNode r1 = new TreeNode(20);
-        TreeNode l2 = new TreeNode(15);
-        TreeNode r2 = new TreeNode(7);
-        root.setLeft(l1);
+        TreeNode root = new TreeNode(1);
+        TreeNode r1 = new TreeNode(2);
+        TreeNode l2 = new TreeNode(3);
         root.setRight(r1);
         r1.setLeft(l2);
-        r1.setRight(r2);
-        List<List<Integer>> res = solution.levelOrder(root);
-        List<List<Integer>> realRes = new ArrayList<>();
-        realRes.add(Arrays.asList(3));
-        realRes.add(Arrays.asList(9, 20));
-        realRes.add(Arrays.asList(15, 7));
+        List<Integer> res = solution.postorderTraversal(root);
+        List<Integer> realRes = Arrays.asList(3,2,1);
         Assert.assertEquals(res.toString(), realRes.toString());
     }
 }
