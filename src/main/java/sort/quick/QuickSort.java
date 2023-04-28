@@ -1,4 +1,6 @@
-package sort;
+package sort.quick;
+
+import sort.AbstractSort;
 
 public class QuickSort extends AbstractSort {
 
@@ -23,26 +25,6 @@ public class QuickSort extends AbstractSort {
             sort(arr, left, position);
             sort(arr, position + 1, right);
         }
-
-
-//        if (left < right) {
-//
-//            int position = left, current = left;
-//            for (int i = left + 1; i <= right; i++) {
-//                if (arr[i] < arr[position]) {
-//
-//                    swap(arr, i, position);
-//                    position++;
-//                    current = i;
-//                }
-//            }
-//
-////            swap(arr, position, left);
-//            swap(arr, position, current);
-//
-//            sort(arr, left, position - 1);
-//            sort(arr, position + 1, right);
-//        }
     }
 
 

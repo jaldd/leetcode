@@ -4,15 +4,15 @@ public class SelectSort extends AbstractSort {
 
     public void sort(int[] arr) {
 
-        for (int i = 0; i < arr.length-1; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             int index = i;
-            for (int j = i+1; j < arr.length; j++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 if (arr[j] < arr[index]) {
                     index = j;
                 }
             }
-            if (index != i) {
-                swap(arr,i,index);
+            if (i != index) {
+                swap(arr, i, index);
             }
         }
     }

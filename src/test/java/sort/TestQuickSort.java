@@ -2,6 +2,7 @@ package sort;
 
 import org.junit.Assert;
 import org.junit.Test;
+import sort.quick.QuickSort;
 
 public class TestQuickSort {
 
