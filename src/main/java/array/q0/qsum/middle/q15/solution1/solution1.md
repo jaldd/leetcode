@@ -1,9 +1,6 @@
 方法一：排序 + 双指针
 题目中要求找到所有「不重复」且和为 0 的三元组，这个「不重复」的要求使得我们无法简单地使用三重循环枚举所有的三元组。这是因为在最坏的情况下，数组中的元素全部为 0，即
 
-
-C++Python3JavaGolang
-
 class Solution {
 public List<List<Integer>> threeSum(int[] nums) {
 int n = nums.length;
