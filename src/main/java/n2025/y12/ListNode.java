@@ -69,7 +69,45 @@ public class ListNode {
 
         ListNode newHead = reverseList1(head.next);
         head.next.next = head;
-        head.next=null;
+        head.next = null;
         return newHead;
+    }
+
+    public ListNode deleteDuplicates(ListNode head) {
+        // 你的代码写这里
+        if (head == null || head.next == null) return head;
+        deleteDuplicates(head.next);
+        if (head.val == head.next.val) {
+            head.next = head.next.next;
+        }
+
+        return head;
+    }
+
+    public ListNode deleteDuplicates1(ListNode head) {
+
+        ListNode cur = head;
+
+        while (cur != null && cur.next != null) {
+            if (cur.val == cur.next.val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }
+        }
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+        ListNode listNode1 = new ListNode(1);
+        ListNode listNode2 = new ListNode(1);
+        ListNode listNode3 = new ListNode(1);
+        ListNode listNode4 = new ListNode(2);
+        listNode1.next = listNode2;
+        listNode2.next = listNode3;
+        listNode3.next = listNode4;
+        new ListNode().deleteDuplicates(listNode1);
+        System.out.println(listNode1);
     }
 }
