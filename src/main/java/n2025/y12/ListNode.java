@@ -99,6 +99,29 @@ public class ListNode {
         return head;
     }
 
+    public ListNode removeElements(ListNode head, int val) {
+        // 你的代码写这里
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode cur = dummy;
+        while (cur.next != null) {
+            if (cur.next.val == val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }
+        }
+        return dummy.next;
+
+    }
+
+    public ListNode removeElementsDg(ListNode head, int val) {
+
+        if(head == null) return null;
+        head.next = removeElementsDg(head.next, val);
+        return head.val == val ? head.next : head;
+    }
+
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(1);
