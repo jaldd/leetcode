@@ -82,4 +82,63 @@ public class Solution {
         return new ArrayList<>(map.values());
     }
 
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> res = new ArrayList<>();
+        if (p.length() > s.length()) {
+            return res;
+        }
+        int[] countS = new int[26];
+        int[] countP = new int[26];
+        for (int i = 0; i < p.length(); i++) {
+            countP[p.charAt(i) - 'a']++;
+            countS[s.charAt(i) - 'a']++;
+        }
+        int match = 0;
+        for (int i = 0; i < 26; i++) {
+            if (countS[i] == countP[i]) {
+                match++;
+            }
+        }
+        if (match == 26) {
+            res.add(0);
+        }
+        for (int i = p.length(); i < s.length(); i++) {
+            char leftC = s.charAt(i - p.length());
+            int leftIndex = leftC - 'a';
+            if (countS[leftIndex] == countP[leftIndex]) {
+                match--;
+            }
+            countS[leftIndex]--;
+            if (countS[leftIndex] == countP[leftIndex]) {
+                match++;
+            }
+            char rightC = s.charAt(i);
+            int rightIndex = rightC - 'a';
+            if (countS[rightIndex] == countP[rightIndex]) {
+                match--;
+            }
+            countS[rightIndex]++;
+            if (countS[rightIndex] == countP[rightIndex]) {
+                match++;
+            }
+            if (match == 26) {
+                res.add(i - p.length() + 1);
+            }
+
+        }
+
+        return res;
+    }
+
+    public static void main(String[] args) {
+        String s = "cbaebabacd";
+        String p = "abc";
+        // 预期结果
+        List<Integer> expected = Arrays.asList(0, 6);
+        Solution solution = new Solution();
+        // 实际结果
+        List<Integer> actual = solution.findAnagrams(s, p);
+        System.out.println(expected);
+        System.out.println(actual);
+    }
 }
