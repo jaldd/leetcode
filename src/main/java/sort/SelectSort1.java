@@ -1,6 +1,6 @@
 package sort;
 
-public class SelectSort extends AbstractSort {
+public class SelectSort1 extends AbstractSort {
 
     public void sort(int[] arr) {
 
