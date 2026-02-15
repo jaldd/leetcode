@@ -9,43 +9,44 @@ public class Solution {
 
         int sLength = s.length();
         int tLength = t.length();
-        if (sLength < tLength) {
+        if (tLength > sLength) {
             return "";
         }
-        int[] tCount = new int[128];
-        int[] sCount = new int[128];
-        int tDistinctCount = 0;
-        for (char c : t.toCharArray()) {
-            if (tCount[c] == 0) tDistinctCount++;
-            tCount[c]++;
-        }
-        int left = 0;
+        int need = 0;
+        int[] needCount = new int[128];
+        int valid = 0;
+        int[] window = new int[128];
         int start = 0;
+        int left = 0;
         int minLen = Integer.MAX_VALUE;
-        int sDistinctCount = 0;
+        for (char c : t.toCharArray()) {
+            if (needCount[c] == 0) {
+                need++;
+            }
+            needCount[c]++;
+        }
 
         for (int right = 0; right < sLength; right++) {
-            char sIndex = s.charAt(right);
-            if (tCount[sIndex] > 0) {
-                sCount[sIndex]++;
-                if (sCount[sIndex] == tCount[sIndex]) {
-                    sDistinctCount++;
-                }
+            int rightIndex = s.charAt(right);
+            window[rightIndex]++;
+            if (window[rightIndex] == needCount[rightIndex]) {
+                valid++;
             }
-            while (sDistinctCount == tDistinctCount) {
+
+            while (valid == need) {
                 int curLen = right - left + 1;
                 if (minLen > curLen) {
                     minLen = curLen;
                     start = left;
                 }
-
-                char leftIndex = s.charAt(left);
-                if (tCount[leftIndex] > 0) {
-                    if (sCount[leftIndex] == tCount[leftIndex]) {
-                        sDistinctCount--;
+                int leftIndex = s.charAt(left);
+                if (needCount[leftIndex] > 0) {
+                    if (window[leftIndex] == needCount[leftIndex]) {
+                        valid--;
                     }
-                    sCount[leftIndex]--;
+                    window[leftIndex]--;
                 }
+
                 left++;
             }
         }
