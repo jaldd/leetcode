@@ -10,54 +10,46 @@ public class Solution {
         int sLength = s.length();
         int tLength = t.length();
         if (sLength < tLength) {
-            return null;
+            return "";
         }
-
-        int[] sCount = new int[128];
         int[] tCount = new int[128];
-        int tDistinct = 0;
-        int sDistinct = 0;
-        for (int i = 0; i < t.length(); i++) {
-            int tIndex = t.charAt(i);
-            if (tCount[tIndex] == 0) {
-                tDistinct++;
-            }
-            tCount[tIndex]++;
+        int[] sCount = new int[128];
+        int tDistinctCount = 0;
+        for (char c : t.toCharArray()) {
+            if (tCount[c] == 0) tDistinctCount++;
+            tCount[c]++;
         }
-
-        int l = 0;
+        int left = 0;
         int start = 0;
         int minLen = Integer.MAX_VALUE;
+        int sDistinctCount = 0;
 
-        for (int r = 0; r < s.length(); r++) {
-            int sIndex = s.charAt(r);
+        for (int right = 0; right < sLength; right++) {
+            char sIndex = s.charAt(right);
             if (tCount[sIndex] > 0) {
                 sCount[sIndex]++;
                 if (sCount[sIndex] == tCount[sIndex]) {
-                    sDistinct++;
+                    sDistinctCount++;
                 }
             }
-
-            while (tDistinct == sDistinct) {
-
-                if (minLen > r - l + 1) {
-                    start = l;
-                    minLen = r - l + 1;
+            while (sDistinctCount == tDistinctCount) {
+                int curLen = right - left + 1;
+                if (minLen > curLen) {
+                    minLen = curLen;
+                    start = left;
                 }
-                int lIndex = s.charAt(l);
-                if (tCount[lIndex] > 0) {
 
-                    if (sCount[lIndex] == tCount[lIndex]) {
-                        sDistinct--;
+                char leftIndex = s.charAt(left);
+                if (tCount[leftIndex] > 0) {
+                    if (sCount[leftIndex] == tCount[leftIndex]) {
+                        sDistinctCount--;
                     }
-                    sCount[lIndex]--;
+                    sCount[leftIndex]--;
                 }
-                l++;
+                left++;
             }
         }
-
         return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
-
     }
 
 

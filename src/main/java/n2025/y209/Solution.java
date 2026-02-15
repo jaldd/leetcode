@@ -6,16 +6,15 @@ public class Solution {
 
         int length = nums.length;
         int left = 0;
-        int minLen = Integer.MAX_VALUE;
         int sum = 0;
-        for (int i = 0; i < length; i++) {
-            sum += nums[i];
+        int minLen = Integer.MAX_VALUE;
+        for (int right = 0; right < length; right++) {
+            sum += nums[right];
             while (sum >= target) {
-                minLen = Math.min(minLen, i - left + 1);
+                minLen = Math.min(minLen, right - left + 1);
                 sum -= nums[left];
                 left++;
             }
-
         }
         return minLen == Integer.MAX_VALUE ? 0 : minLen;
     }
