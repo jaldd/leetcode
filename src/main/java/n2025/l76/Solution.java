@@ -9,55 +9,48 @@ public class Solution {
 
         int sLength = s.length();
         int tLength = t.length();
-        if (sLength < tLength) {
-            return null;
+        if (tLength > sLength) {
+            return "";
         }
-
-        int[] sCount = new int[128];
-        int[] tCount = new int[128];
-        int tDistinct = 0;
-        int sDistinct = 0;
-        for (int i = 0; i < t.length(); i++) {
-            int tIndex = t.charAt(i);
-            if (tCount[tIndex] == 0) {
-                tDistinct++;
-            }
-            tCount[tIndex]++;
-        }
-
-        int l = 0;
+        int need = 0;
+        int[] needCount = new int[128];
+        int valid = 0;
+        int[] window = new int[128];
         int start = 0;
+        int left = 0;
         int minLen = Integer.MAX_VALUE;
-
-        for (int r = 0; r < s.length(); r++) {
-            int sIndex = s.charAt(r);
-            if (tCount[sIndex] > 0) {
-                sCount[sIndex]++;
-                if (sCount[sIndex] == tCount[sIndex]) {
-                    sDistinct++;
-                }
+        for (char c : t.toCharArray()) {
+            if (needCount[c] == 0) {
+                need++;
             }
-
-            while (tDistinct == sDistinct) {
-
-                if (minLen > r - l + 1) {
-                    start = l;
-                    minLen = r - l + 1;
-                }
-                int lIndex = s.charAt(l);
-                if (tCount[lIndex] > 0) {
-
-                    if (sCount[lIndex] == tCount[lIndex]) {
-                        sDistinct--;
-                    }
-                    sCount[lIndex]--;
-                }
-                l++;
-            }
+            needCount[c]++;
         }
 
-        return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
+        for (int right = 0; right < sLength; right++) {
+            int rightIndex = s.charAt(right);
+            window[rightIndex]++;
+            if (window[rightIndex] == needCount[rightIndex]) {
+                valid++;
+            }
 
+            while (valid == need) {
+                int curLen = right - left + 1;
+                if (minLen > curLen) {
+                    minLen = curLen;
+                    start = left;
+                }
+                int leftIndex = s.charAt(left);
+                if (needCount[leftIndex] > 0) {
+                    if (window[leftIndex] == needCount[leftIndex]) {
+                        valid--;
+                    }
+                    window[leftIndex]--;
+                }
+
+                left++;
+            }
+        }
+        return minLen == Integer.MAX_VALUE ? "" : s.substring(start, start + minLen);
     }
 
 
