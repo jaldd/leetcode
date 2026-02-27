@@ -23,6 +23,7 @@ public class Solution {
             current.next = p1;
         }
         if (p2 != null) {
+
             current.next = p2;
         }
         return dummary.next;
