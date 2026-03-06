@@ -12,10 +12,10 @@ public class Solution {
             int leftSquare = nums[left] * nums[left];
             int rightSquare = nums[right] * nums[right];
             if (leftSquare > rightSquare) {
-                res[index]=leftSquare;
+                res[index] = leftSquare;
                 left++;
             } else {
-                res[index]=rightSquare;
+                res[index] = rightSquare;
                 right--;
             }
             index--;
